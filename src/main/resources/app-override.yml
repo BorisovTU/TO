@@ -1,0 +1,31 @@
+server:
+  port: 8483
+
+spring:
+  application:
+    name: device-data-hub-teleofis-local
+
+live-entities:
+  read-only: true
+
+transport-server:
+  type: Both
+  tcpPort: 30001
+  enabled: true
+  udpPort: 30002
+
+data-hub:
+  topics:
+    data-history:
+      name: data-history-DudnikVY
+  filters:
+    transfers:
+      serials:
+        include: [ '867724030471137']
+
+logging:
+  level:
+    com.synergy.transport.tcp: TRACE
+    com.synergy.datahub: TRACE
+    com.synergy.transport.tcp.client: TRACE
+    com.synergy.datahub.teleofis: TRACE

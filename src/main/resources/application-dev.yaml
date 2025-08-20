@@ -1,0 +1,22 @@
+spring:
+  data:
+    redis:
+      host: 10.50.1.26
+      password: password
+  kafka:
+    bootstrap-servers: kfk0.dev.surd.synergyteam.local:9092
+logging:
+  level:
+    com.synergy: TRACE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+data-hub:
+  teleofis:
+    close-after-2periods-plus: 30s
+    connection-interval: 10m
+    #расписание планировщика для проверки активности регистратора
+    check-active-interval: 1m

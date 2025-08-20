@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: device-data-hub-teleofis
+tcp-transport:
+  request-strategy:
+    timeout: 1m
+  close-strategy:
+    enabled: true
+    #максимальное время простоя tcp сессии, при неактивности сессии больше 15s произойдет автоматическое закрытие
+    max-idle-time: 15s
+    #время, через которое закрывать сессию после подключения регистратора
+    delay-close-time: 120s
+#    #кэш данных из первых пакетов следующих за телеметрией
+data-hub:
+  filters:
+    transfers:
+      protocols:
+        include: [ 'TELEOFIS RTU', 'TELEOFIS RTU NB IOT', 'TELEOFIS RTU GPRS' ]
+  teleofis:
+    cache:
+      #использование кеша запросов
+      use-cache: false
+      expire-after: 5m
+    work-mode:
+      #принудительная смена режима работы на спорадический режим
+      force-change: false
+      mode: SporadicOff
+    #расписание планировщика для проверки активности регистратора
+    check-active-interval: 5m
+    #расписание выхода устройства на связь (используется если не задан конкретный интервал в конфигурации)
+    connection-interval: 24h
+    #сколько ждем после того как проходит 2 периода выхода на связь, перед закрытием
+    close-after-2periods-plus: 1h
+
+  receive-schedule:
+    enabled: false
+transport-server:
+  type: Both
+  tcpPort: 30001
+  enabled: true
+  udpPort: 30002

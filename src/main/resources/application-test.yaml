@@ -1,0 +1,23 @@
+spring:
+  data:
+    redis:
+      cluster:
+        nodes:
+          - rd0.test.surd.synergyteam.local:6379
+          - rd1.test.surd.synergyteam.local:6379
+          - rd2.test.surd.synergyteam.local:6379
+        max-redirects: 10
+      password: password
+      timeout: 15s
+      lettuce:
+        cluster:
+          refresh:
+            adaptive: true
+            period: 10s
+  kafka:
+    bootstrap-servers: gate.surd.synergyteam.local:9092
+
+logging:
+  level:
+    com.synergy.datahub: TRACE
+    com.synergy.transport.TcpTransportSessionHandler: TRACE

@@ -1,0 +1,26 @@
+spring:
+  data:
+    redis:
+      cluster:
+        nodes:
+          - rd0.prod.cm.local:6379
+          - rd1.prod.cm.local:6379
+          - rd2.prod.cm.local:6379
+        max-redirects: 10
+      password: k8YTL5hjc8Z7
+      timeout: 15s
+      lettuce:
+        cluster:
+          refresh:
+            adaptive: true
+            period: 10s
+  kafka:
+    bootstrap-servers: lb.prod.cm.local:9092
+
+data-hub:
+  teleofis:
+    connection-interval: 2d
+
+logging:
+  level:
+    com.synergy.datahub: TRACE
